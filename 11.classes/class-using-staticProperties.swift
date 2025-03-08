@@ -2,11 +2,10 @@
 Exercise : Using Static Properties
 Task:
 Create a class BankAccount with:
-
-A property balance: Double
-A method deposit(amount: Double)
-A method withdraw(amount: Double)
-A static property bankName = "Swift Bank"
+- A property balance: Double
+- A method deposit(amount: Double)
+- A method withdraw(amount: Double)
+- A static property bankName = "Swift Bank"
 */
 class BankAccount {
     var balance: Double

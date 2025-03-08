@@ -16,7 +16,7 @@ class Rectangle {
     }
 
     init(width: Double, height: Double) {
-        self.width = width
+        self.width = width //property of the rectangle = value given when creating the rectangle
         self.height = height
     }
 }
