@@ -205,6 +205,9 @@
                                 <state key="normal" title="RECALCULATE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="recalculatePressed:" destination="SnS-5r-eGz" eventType="touchUpInside" id="RJZ-eR-qGX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wKQ-DS-EtD"/>
@@ -216,6 +219,10 @@
                             <constraint firstItem="kTx-cq-c4T" firstAttribute="leading" secondItem="wKQ-DS-EtD" secondAttribute="leading" id="ko4-jM-QWe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="settingslabel" destination="b5m-Ew-KAK" id="86h-qc-n9c"/>
+                        <outlet property="totalLabel" destination="Art-Ec-ffQ" id="2vs-Z6-aal"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nc1-Qk-TY2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
