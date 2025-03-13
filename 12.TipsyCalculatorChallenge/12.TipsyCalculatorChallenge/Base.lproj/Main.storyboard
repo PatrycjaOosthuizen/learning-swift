@@ -60,6 +60,9 @@
                                 <state key="normal" title="0%">
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="tipChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9bE-W4-ca5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yi-4n-pUh">
                                 <rect key="frame" x="149" y="381" width="95" height="54"/>
@@ -70,6 +73,9 @@
                                 <state key="normal" title="10%">
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="tipChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f8f-cr-Suu"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Split" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9Y-Z6-tt3">
                                 <rect key="frame" x="51" y="531" width="116" height="26"/>
@@ -81,9 +87,12 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minimumValue="2" maximumValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="1Fk-lA-5Lg">
                                 <rect key="frame" x="183" y="586" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8Nn-Sd-Tii"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXM-KX-Udc">
-                                <rect key="frame" x="123" y="581" width="22" height="42"/>
+                                <rect key="frame" x="129" y="581" width="30" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
@@ -97,6 +106,9 @@
                                 <state key="normal" title="20%">
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="tipChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Go-Qs-uhn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOp-Xt-P6f">
                                 <rect key="frame" x="71" y="740" width="251" height="49"/>
@@ -107,6 +119,9 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="calculatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="URP-cT-TV8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -118,6 +133,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jbn-yf-bIC" secondAttribute="bottom" constant="554" id="nJ7-op-7Bs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="billTextField" destination="Ue4-zp-OMv" id="ZH5-fJ-SwT"/>
+                        <outlet property="splitNumberLabel" destination="lXM-KX-Udc" id="oX0-XU-jyq"/>
+                        <outlet property="tenPctButton" destination="1Yi-4n-pUh" id="vmW-F6-sit"/>
+                        <outlet property="twentyPctButton" destination="70k-DB-8yF" id="0lM-yF-3ZS"/>
+                        <outlet property="zeroPctButton" destination="Xpv-k9-JQm" id="knt-Pz-Lq7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
