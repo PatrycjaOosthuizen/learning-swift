@@ -17,6 +17,13 @@ class CalculatorViewController: UIViewController {
     
 
     @IBAction func tipChanged(_ sender: UIButton) {
+        // Deselect all buttons first
+        zeroPctButton.isSelected = false
+        tenPctButton.isSelected = false
+        twentyPctButton.isSelected = false
+        
+        // Select the button that was pressed
+        sender.isSelected = true
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
