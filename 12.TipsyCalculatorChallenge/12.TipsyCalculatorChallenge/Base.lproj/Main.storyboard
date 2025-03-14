@@ -141,6 +141,7 @@
                         <outlet property="tenPctButton" destination="1Yi-4n-pUh" id="vmW-F6-sit"/>
                         <outlet property="twentyPctButton" destination="70k-DB-8yF" id="0lM-yF-3ZS"/>
                         <outlet property="zeroPctButton" destination="Xpv-k9-JQm" id="knt-Pz-Lq7"/>
+                        <segue destination="SnS-5r-eGz" kind="presentation" identifier="goToResult" id="Q5c-46-S2e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -152,11 +153,11 @@
             <objects>
                 <viewController id="SnS-5r-eGz" customClass="ResultViewController" customModule="_2_TipsyCalculatorChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AyR-Sq-tC3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTx-cq-c4T">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="338"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="362"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total per person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qas-Rs-Ixg">
                                         <rect key="frame" x="102" y="150.66666666666666" width="213" height="37"/>
@@ -222,7 +223,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="settingslabel" destination="b5m-Ew-KAK" id="86h-qc-n9c"/>
+                        <outlet property="settingsLabel" destination="b5m-Ew-KAK" id="86h-qc-n9c"/>
                         <outlet property="totalLabel" destination="Art-Ec-ffQ" id="2vs-Z6-aal"/>
                     </connections>
                 </viewController>
