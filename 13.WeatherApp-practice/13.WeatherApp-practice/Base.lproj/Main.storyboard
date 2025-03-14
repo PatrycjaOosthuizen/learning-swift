@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppo-tz-0VO">
                                 <rect key="frame" x="331" y="53" width="35" height="35"/>
@@ -35,6 +35,9 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DVr-7A-K9F"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jv2-r1-cWJ">
                                 <rect key="frame" x="38" y="57.666666666666629" width="33" height="30"/>
@@ -100,6 +103,7 @@
                     <connections>
                         <outlet property="cityLabel" destination="Iay-Kb-1R8" id="FJx-Hr-1aV"/>
                         <outlet property="conditionImageView" destination="55N-Jj-2DF" id="TwC-9x-QGB"/>
+                        <outlet property="searchTextField" destination="gZp-gG-dZX" id="Hwu-nj-pBj"/>
                         <outlet property="temperatureLabel" destination="YjJ-VX-l1Y" id="6bb-6p-wbT"/>
                     </connections>
                 </viewController>
