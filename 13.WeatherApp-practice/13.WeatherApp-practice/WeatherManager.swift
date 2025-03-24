@@ -25,7 +25,17 @@ struct WeatherManager {
             
             //3. Give the session a task
             
-            let task = session.dataTask(with: url, completionHandler: handle(data:response:error:))
+            let task = session.dataTask(with: url) { (data, response, error) in // trailing closure
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                if let safeData = data {
+                    let dataString = String(data: safeData, encoding: .utf8)
+                    print(dataString!)
+                }
+            }
             
             //4. Start the task
             
@@ -34,15 +44,5 @@ struct WeatherManager {
         }
     }
     
-    func handle(data: Data?, response: URLResponse?, error: Error?) -> Void {
-        if error != nil {
-            print(error!)
-            return
-        }
-        
-        if let safeData = data {
-            let dataString = String(data: safeData, encoding: .utf8)
-            print(dataString!)
-        }
-    }
+    
 }
