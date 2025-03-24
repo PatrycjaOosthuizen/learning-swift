@@ -32,8 +32,7 @@ struct WeatherManager {
                 }
                 
                 if let safeData = data {
-                    let dataString = String(data: safeData, encoding: .utf8)
-                    print(dataString!)
+                    self.parseJSON(weatherData: safeData) // inside the closure we must add "self" if we are calling the method from the current class
                 }
             }
             
@@ -41,6 +40,18 @@ struct WeatherManager {
             
             task.resume()
             
+        }
+    }
+    
+    func parseJSON(weatherData: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
+            // Print weather condition
+            print(decodedData.weather[0].description)
+            
+        } catch {
+            print(error)
         }
     }
     
