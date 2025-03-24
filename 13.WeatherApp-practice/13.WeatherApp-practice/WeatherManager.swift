@@ -51,34 +51,19 @@ struct WeatherManager {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             // Print weather condition
             let id = decodedData.weather[0].id
-            print(getConditionName(weatherId: id))
+            let temp = decodedData.main.temp
+            let name = decodedData.name
+            
+            let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp)
+            
+            print(weather.conditionName)
+            print(weather.temperatureString)
         } catch {
             print(error)
         }
         
     }
 
-    // challenge using a switch statement try print out a name of an icon that matches the conditions id from OpenWeatherMap
-    func getConditionName(weatherId: Int) -> String {
-        switch weatherId {
-        case 200...232:
-            return "cloud.bolt"  // Thunderstorm
-        case 300...321:
-            return "cloud.drizzle"    // Drizzle
-        case 500...531:
-            return "cloud.rain"       // Rain
-        case 600...622:
-            return "snow"             // Snow
-        case 701...781:
-            return "smoke"            // Atmosphere (Fog, Mist, Haze)
-        case 800:
-            return "sun.max"          // Clear
-        case 801...804:
-            return "cloud"            // Cloudy
-        default:
-            return "cloud" // Unknown weather condition
-        }
-    }
     
     
 }
