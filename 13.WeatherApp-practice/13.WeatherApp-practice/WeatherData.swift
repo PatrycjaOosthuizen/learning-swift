@@ -21,6 +21,6 @@ struct Main: Decodable {
 
 // Struct for the top-level JSON response
 struct Weather: Decodable {
-    let description: String
+    let id: Int
    
 }
