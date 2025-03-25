@@ -8,19 +8,19 @@
 import Foundation
 
 // Struct for individual weather data
-struct WeatherData: Decodable {
+struct WeatherData: Codable {
     let name: String
     let main: Main
     let weather: [Weather] // Array of Weather objects
     
 }
 
-struct Main: Decodable {
+struct Main: Codable {
     let temp: Double
 }
 
 // Struct for the top-level JSON response
-struct Weather: Decodable {
+struct Weather: Codable {
     let id: Int
    
 }
