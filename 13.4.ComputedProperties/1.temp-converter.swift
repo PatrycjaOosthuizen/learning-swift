@@ -24,3 +24,11 @@ struct Temperature {
 // Example Usage
 let temp = Temperature(celsius: 25)
 print(temp.fahrenheit) // Output: 77.0
+
+
+/* Explanation:
+
+- fahrenheit is a computed property, meaning it doesn’t store a value but calculates it dynamically.
+- When accessed, it converts the temperature from Celsius to Fahrenheit.
+
+*/
