@@ -44,6 +44,7 @@ struct WeatherManager {
                     //  Must use `self` in a closure inside a struct
                     if let weather = self.parseJSON(safeData) {
                         self.delegate?.didUpdateWeather(self, weather: weather)
+                       
                     }
                 }
             }
@@ -58,6 +59,8 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
+            
+            print("Decoded Weather Data: \(decodedData.weather[0].id)") // ✅ Debugging line
             // Print weather condition
             let id = decodedData.weather[0].id
             let temp = decodedData.main.temp

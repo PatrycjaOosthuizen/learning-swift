@@ -22,5 +22,5 @@ struct Main: Codable {
 // Struct for the top-level JSON response
 struct Weather: Codable {
     let id: Int
-   
+    let description: String
 }
