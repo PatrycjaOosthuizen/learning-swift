@@ -59,6 +59,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Background Color"/>
                     </view>
+                    <connections>
+                        <outlet property="bitcoinLabel" destination="kUc-rA-ZyH" id="CTG-WX-4cH"/>
+                        <outlet property="currencyLabel" destination="sAC-MN-nRp" id="Mt9-Sg-OaN"/>
+                        <outlet property="currencyPicker" destination="WiS-eM-9us" id="fod-QO-4Uv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
