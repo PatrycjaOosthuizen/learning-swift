@@ -18,6 +18,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return coinManager.currencyArray.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return coinManager.currencyArray[row]
+    }
 
     @IBOutlet weak var bitcoinLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
@@ -28,7 +31,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
     }
-
 
 }
 
