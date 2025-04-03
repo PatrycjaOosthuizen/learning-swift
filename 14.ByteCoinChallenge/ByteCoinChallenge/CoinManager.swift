@@ -7,12 +7,31 @@
 
 import Foundation
 
+// By convention, Swift protocols are usually defined in the same file as the class or struct that will use them.
+// In this case, the protocol is in the same file as CoinManager.
+protocol CoinManagerDelegate {
+
+    // Define the methods that any class adopting this protocol must implement.
+    // These methods don't have any functionality here—they will be implemented by the delegate.
+    
+    // When the price is updated, this method will be called with the latest price and currency.
+    func didUpdatePrice(price: String, currency: String)
+    
+    // This method is called if an error occurs, passing the error details.
+    func didFailWithError(error: Error)
+}
+
 struct CoinManager {
+    
+    // An optional delegate that will be notified when the price is updated.
+    // The delegate must implement the required methods from CoinManagerDelegate.
+    var delegate: CoinManagerDelegate?
+
     
     //https://www.coinapi.io/
     
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    let apiKey = //"YOUR_API_KEY_HERE"
+    let apiKey = "dbb45c7e-9db9-4282-a701-d31d167926c1" //"YOUR_API_KEY_HERE"
     
     let currencyArray = ["AUD","BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
@@ -34,7 +53,15 @@ struct CoinManager {
                         }
                         
                         if let safeData = data {
-                            let bitcoinPrice = self.parseJSON(safeData)
+                            
+                            if let bitcoinPrice = self.parseJSON(safeData) {
+                                //Round the price down to 2 decimal places.
+                                let priceString = String(format: "%.2f", bitcoinPrice)
+                                                        
+                                //Call the delegate method in the delegate (ViewController) and
+                                //pass along the necessary data.
+                                self.delegate?.didUpdatePrice(price: priceString, currency: currency)
+                            }
                         }
                         
                     }
@@ -59,7 +86,7 @@ struct CoinManager {
             } catch {
                 
                 //Catch and print any errors.
-                print(error)
+                delegate?.didFailWithError(error: error)
                 return nil
             }
         }
