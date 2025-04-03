@@ -12,7 +12,7 @@ struct CoinManager {
     //https://www.coinapi.io/
     
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    let apiKey = "YOUR_API_KEY_HERE"
+    let apiKey = //"YOUR_API_KEY_HERE"
     
     let currencyArray = ["AUD","BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
@@ -32,15 +32,37 @@ struct CoinManager {
                             print(error!)
                             return
                         }
-                        //Format the data we got back as a string to be able to print it.
-                        let dataAsString = String(data: data!, encoding: .utf8)
-                        print(dataAsString ?? "Invalid data")
+                        
+                        if let safeData = data {
+                            let bitcoinPrice = self.parseJSON(safeData)
+                        }
                         
                     }
                     //Start task to fetch data from bitcoin average's servers.
                     task.resume()
                 }
             }
+    func parseJSON(_ data: Data) -> Double? {
             
+            //Create a JSONDecoder
+            let decoder = JSONDecoder()
+            do {
+                
+                //try to decode the data using the CoinData structure
+                let decodedData = try decoder.decode(CoinData.self, from: data)
+                
+                //Get the last property from the decoded data.
+                let lastPrice = decodedData.rate
+                print(lastPrice)
+                return lastPrice
+                
+            } catch {
+                
+                //Catch and print any errors.
+                print(error)
+                return nil
+            }
         }
+    
+    }
 
