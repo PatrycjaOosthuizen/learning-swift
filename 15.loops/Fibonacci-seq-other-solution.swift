@@ -23,6 +23,7 @@ class Assignment {
         }
     }
 }
+// Example usage
 let assignment = Assignment()
-assignment.fibonacci(n: 10)
+assignment.fibonacci(n: 10) // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
