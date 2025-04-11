@@ -1,6 +1,6 @@
 import Foundation
 
-struct MyStructure{
+struct MyStructure {
   let instanceProperty = "ABC"
   static let typeProperty = "123"
 
