@@ -27,14 +27,11 @@ struct ContentView: View {
                 Text("Aspiring Software Developer")
                     .foregroundColor(.white)
                     .font(.system(size: 19))
-                  .fontWeight(.light)
+                    .fontWeight(.light)
                 Divider()
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(height: 50)
-                    .foregroundColor(.white)
-                    .overlay(Text("T"))
+                InfoView(text: "oosthuizen.code@gmail.com", imageName: "envelope")
             }
-            .padding(.all)
+            
         }
     }
 }
@@ -42,3 +39,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
