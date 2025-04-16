@@ -14,15 +14,27 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
+                Image("PO")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 170, height: 170)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 2))
                 Text("Patrycja Oosthuizen")
                     .font(Font.custom("PlaywriteGBS-Regular", size: 32))
                     .bold()
                     .foregroundColor(.white)
+                Text("Aspiring Software Developer")
+                    .foregroundColor(.white)
+                    .font(.system(size: 19))
+                  .fontWeight(.light)
+                Divider()
+                RoundedRectangle(cornerRadius: 20)
+                    .frame(height: 50)
+                    .foregroundColor(.white)
+                    .overlay(Text("T"))
             }
-            .padding()
+            .padding(.all)
         }
     }
 }
