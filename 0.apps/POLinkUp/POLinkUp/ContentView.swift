@@ -30,6 +30,7 @@ struct ContentView: View {
                     .fontWeight(.light)
                 Divider()
                 InfoView(text: "oosthuizen.code@gmail.com", imageName: "envelope")
+                InfoView(text: "https://patrycja-portfolio.netlify.app/", imageName: "link")
             }
             
         }
