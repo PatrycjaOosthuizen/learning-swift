@@ -19,8 +19,16 @@ struct ContentView: View {
                     DiceView(n: 1)
                     DiceView(n: 1)
                 }
-                .padding(.horizontal, 40)
-
+                .padding(.horizontal)
+                Button(action: {}) {
+                    Text("Roll")
+                        .font(.system(size: 40))
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(10)
+                }
                     
                 }
             }
@@ -35,6 +43,7 @@ struct DiceView: View {
         Image("dice\(n)")
             .resizable()
             .aspectRatio(1, contentMode: .fit)
+            .padding()
     }
 }
 
