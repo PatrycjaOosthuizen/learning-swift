@@ -15,11 +15,13 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Image("diceeLogo")
+                Spacer()
                 HStack {
                     DiceView(n: 1)
                     DiceView(n: 1)
                 }
                 .padding(.horizontal)
+                Spacer()
                 Button(action: {}) {
                     Text("Roll")
                         .font(.system(size: 40))
