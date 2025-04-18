@@ -17,10 +17,12 @@ struct ContentView: View {
                 .font(.largeTitle)
             NavigationView {
                 List(networkManager.posts) { post in
+                    NavigationLink(destination: DetailView(url: post.url)) {
                         HStack {
                             Text(String(post.points))
                             Text(post.title)
                         }
+                    }
                 }
                 .navigationBarTitle("H4CK3R Snax")
             }
