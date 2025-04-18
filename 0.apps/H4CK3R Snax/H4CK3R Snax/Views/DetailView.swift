@@ -7,19 +7,17 @@
 
 import SwiftUI
 
-
 struct DetailView: View {
-    
-    let url : String?
-    
-    
+    let url: String?
+
     var body: some View {
-       WebView(urlString: url)
+        WebView(urlString: url)
+            .navigationTitle("Article")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    DetailView(url: "https://www.google.com")
+    DetailView(url: "https://google.com")
 }
-
 

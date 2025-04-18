@@ -7,16 +7,31 @@
 
 import Foundation
 
-struct Results: Decodable {
+struct Results: Codable {
     let hits: [Post]
 }
 
-struct Post: Decodable, Identifiable {
-    var id: String {
-        return objectID
-    }
-    let objectID: String
-    let points: Int
+struct Post: Codable, Identifiable {
+    var id: String { objectID } // Conform to Identifiable
+
+    let author: String
     let title: String
     let url: String?
+    let num_comments: Int
+    let created_at: String
+    let objectID: String
+    let points: Int
+
+    // Optional highlight fields (not used in UI here but kept for future use)
+    let highlightResult: HighlightResult?
+
+    struct HighlightResult: Codable {
+        let author: HighlightField
+        let title: HighlightField
+        let url: HighlightField
+    }
+
+    struct HighlightField: Codable {
+        let value: String
+    }
 }

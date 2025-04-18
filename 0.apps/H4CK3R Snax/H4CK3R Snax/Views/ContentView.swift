@@ -8,39 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @ObservedObject var networkManager = NetworkManager()
-    
+
     var body: some View {
-        VStack {
-            Text("🟧 💻 🧠")
-                .font(.largeTitle)
-            NavigationView {
-                List(networkManager.posts) { post in
-                    NavigationLink(destination: DetailView(url: post.url)) {
-                        HStack {
-                            Text(String(post.points))
+        NavigationView {
+            List(networkManager.posts) { post in
+                NavigationLink(destination: DetailView(url: post.url)) {
+                    HStack {
+                        Text("\(post.points)")
+                            .bold()
+                            .frame(width: 50, alignment: .leading)
+                        VStack(alignment: .leading) {
                             Text(post.title)
+                                .font(.headline)
+                            Text("By \(post.author)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
                     }
+                    .padding(.vertical, 4)
                 }
-                .navigationBarTitle("H4CK3R Snax")
             }
+            .navigationTitle("🟧 H4CK3R Snax")
             .onAppear {
-                self.networkManager.fetchData()
+                networkManager.fetchData()
             }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
-
-
-//let posts = [
-//    Post(id: "1", title: "HELLO"),
-//    Post(id: "2", title: "WORLD"),
-//    Post(id: "3", title: "💻"),
-//]
