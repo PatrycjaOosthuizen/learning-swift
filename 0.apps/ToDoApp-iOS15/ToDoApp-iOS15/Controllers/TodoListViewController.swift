@@ -155,4 +155,14 @@ extension TodoListViewController: UISearchBarDelegate {
         loadItems(with: request)
         
     }
+    // This is a delegate method from UISearchBarDelegate, and it triggers every time the user types, deletes, or edits the text in a UISearchBar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }
