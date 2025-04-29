@@ -12,6 +12,12 @@ class TodoListViewController: UITableViewController {
     
     var itemArray = [Item]()
     
+    var selectedCategory: Category? {
+        didSet {
+            loadItems()
+        }
+    }
+    
     // let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -33,9 +39,7 @@ class TodoListViewController: UITableViewController {
         //        newItem3.title = "Study Swift"
         //        itemArray.append(newItem3)
         
-        
-        loadItems()
-        
+            
         
         //        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
         //           itemArray = items
@@ -99,6 +103,7 @@ class TodoListViewController: UITableViewController {
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.append(newItem)
             
             self.saveItems()
@@ -127,7 +132,15 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
         
         
         do {
@@ -139,7 +152,7 @@ class TodoListViewController: UITableViewController {
     
 
 }
-//MARK: - Search Bar Methods
+//MARK: - Search bar Methods
 extension TodoListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -148,11 +161,11 @@ extension TodoListViewController: UISearchBarDelegate {
         
         // [cd] case and diacritic insensitive - https://nshipster.com/nspredicate/
         
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItems(with: request)
+        loadItems(with: request, predicate: predicate)
         
     }
     // This is a delegate method from UISearchBarDelegate, and it triggers every time the user types, deletes, or edits the text in a UISearchBar
