@@ -37,6 +37,20 @@
 			);
 			target = 356CBB6F2DC1E4B90034D29A /* InspoQuotes-iOS15 */;
 		};
+		356CBBA42DC1E79C0034D29A /* Exceptions for "InspoQuotes-iOS15UITests" folder in "InspoQuotes-iOS15" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SceneDelegate.swift,
+			);
+			target = 356CBB6F2DC1E4B90034D29A /* InspoQuotes-iOS15 */;
+		};
+		356CBBA52DC1E79C0034D29A /* Exceptions for "InspoQuotes-iOS15UITests" folder in "InspoQuotes-iOS15UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SceneDelegate.swift,
+			);
+			target = 356CBB8F2DC1E4BB0034D29A /* InspoQuotes-iOS15UITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -55,6 +69,10 @@
 		};
 		356CBB932DC1E4BB0034D29A /* InspoQuotes-iOS15UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				356CBBA42DC1E79C0034D29A /* Exceptions for "InspoQuotes-iOS15UITests" folder in "InspoQuotes-iOS15" target */,
+				356CBBA52DC1E79C0034D29A /* Exceptions for "InspoQuotes-iOS15UITests" folder in "InspoQuotes-iOS15UITests" target */,
+			);
 			path = "InspoQuotes-iOS15UITests";
 			sourceTree = "<group>";
 		};
