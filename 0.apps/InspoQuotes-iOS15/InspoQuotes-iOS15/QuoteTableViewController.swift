@@ -58,6 +58,14 @@ class QuoteTableViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: - Table view delegate methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == quotesToShow.count {
+            print("More quotes button clicked")
+        }
+    }
 
     // Action method for when the "Restore" button is pressed.
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
