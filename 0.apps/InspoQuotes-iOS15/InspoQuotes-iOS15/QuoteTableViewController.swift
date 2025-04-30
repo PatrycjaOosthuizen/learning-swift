@@ -39,6 +39,15 @@ class QuoteTableViewController: UITableViewController {
       
         return quotesToShow.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCell", for: indexPath)
+
+        cell.textLabel?.text = quotesToShow[indexPath.row]
+        cell.textLabel?.numberOfLines = 0
+
+        return cell
+    }
 
 
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
