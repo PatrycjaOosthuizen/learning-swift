@@ -8,6 +8,8 @@
 import UIKit
 
 class QuoteTableViewController: UITableViewController {
+    
+       var premiumQuotesUnlocked = false
        
        // Array of free quotes to display in the table view.
         var quotesToShow = [
@@ -31,25 +33,25 @@ class QuoteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     // MARK: - Table view data source
     
     // Returns the number of rows in the section, based on the number of quotes to show.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
-        return quotesToShow.count + 1
+        return premiumQuotesUnlocked ? quotesToShow.count : quotesToShow.count + 1
     }
     
     // Configures and returns each cell for the table view.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Reuse a cell with the identifier "QuoteCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCell", for: indexPath)
+        
         if indexPath.row < quotesToShow.count {
             cell.textLabel?.text = quotesToShow[indexPath.row]
             cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textColor = .label
+            cell.accessoryType = .none
         } else {
             cell.textLabel?.text = "Get More Quotes"
             cell.textLabel?.textColor = .systemMint
@@ -62,8 +64,9 @@ class QuoteTableViewController: UITableViewController {
     // MARK: - Table view delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == quotesToShow.count {
+        if indexPath.row == quotesToShow.count && !premiumQuotesUnlocked {
             buyPremiumQuotes()
+            showPremiumQuotes()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -73,6 +76,13 @@ class QuoteTableViewController: UITableViewController {
     
     func buyPremiumQuotes() {
         print("Buying premium quotes...")
+    }
+    
+    func showPremiumQuotes() {
+        
+        quotesToShow.append(contentsOf: premiumQuotes)
+        premiumQuotesUnlocked = true    
+        tableView.reloadData()
     }
 
     // Action method for when the "Restore" button is pressed.
