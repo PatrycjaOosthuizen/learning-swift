@@ -79,14 +79,19 @@ class QuoteTableViewController: UITableViewController {
     }
     
     func showPremiumQuotes() {
+        guard !premiumQuotesUnlocked else { return } // Prevent duplicate appends
         
         quotesToShow.append(contentsOf: premiumQuotes)
-        premiumQuotesUnlocked = true    
+        premiumQuotesUnlocked = true
         tableView.reloadData()
     }
 
     // Action method for when the "Restore" button is pressed.
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
+        // Simulate restoring purchases by unlocking premium quotes
+        showPremiumQuotes()
+        print("Simulating restore of purchases.")
+
     }
 }
 
