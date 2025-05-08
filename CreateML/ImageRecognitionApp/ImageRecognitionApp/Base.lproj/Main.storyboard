@@ -31,9 +31,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vzo-0c-N1A">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="u4E-EL-D5O"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="u4E-EL-D5O">
+                            <connections>
+                                <action selector="cameraButtonTapped:" destination="BYZ-38-t0r" id="oSf-wr-EHI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ImageView" destination="2M7-id-fx0" id="cFC-wL-qKw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
