@@ -10,6 +10,8 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
+    var diceArray = [SCNNode]()
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -73,30 +75,50 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 y: hitTestResult.worldTransform.columns.3.y + diceNode.boundingSphere.radius,
                 z: hitTestResult.worldTransform.columns.3.z
                )
+                   
+               diceArray.append(diceNode)
        
                sceneView.scene.rootNode.addChildNode(diceNode)
                    
-                   let randomX = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
-                   
-                   let randomZ = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
-                   
-                   diceNode.runAction(
-                    SCNAction.rotateBy(
-                       x: CGFloat(randomX * 5),
-                       y: 0,
-                       z: CGFloat(randomZ * 5),
-                       duration: 0.5
-                   ))
-                
-                   
-       
+                   rollDice(dice: diceNode)
+
                }
            }
         }
     }
     
+    func rollAllDice() {
+          if !diceArray.isEmpty {
+              for dice in diceArray {
+                  rollDice(dice: dice)
+              }
+        }
+    }
     
+    func rollDice(dice: SCNNode){
+        let randomX = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
+        
+        let randomZ = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
+        
+        dice.runAction(
+         SCNAction.rotateBy(
+            x: CGFloat(randomX * 5),
+            y: 0,
+            z: CGFloat(randomZ * 5),
+            duration: 0.5)
+        )
+    }
+
     
+    @IBAction func rollAgain(_ sender: UIBarButtonItem) {
+        rollAllDice()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            rollAllDice()
+        }
+    }
     
     func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if anchor is ARPlaneAnchor {
