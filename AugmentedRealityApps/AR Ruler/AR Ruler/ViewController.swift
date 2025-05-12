@@ -17,6 +17,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Useful for managing, updating, or removing them later.
     var dotNodes = [SCNNode]()
     
+    // Declare a reusable node to display 3D text in the AR scene.
+    // This allows updating or removing the text later without creating multiple nodes.
+    var textNode = SCNNode()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // If a touch is detected, perform a hit test at the touch location to find a feature point in the real world.
     // If a feature point is found, place a small red dot at that location in the AR scene.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        // If two or more dots are already placed, remove them from the scene
+        if dotNodes.count >= 2 {
+            for dot in dotNodes {
+                dot.removeFromParentNode() // Remove each dot node from the scene
+            }
+            
+            dotNodes  = [SCNNode]() // Reset the dotNodes array for new measurements
+        }
        
         if let touchLocation = touches.first?.location(in: sceneView) {
             // Perform a hit test to find real-world feature points at the touched location
@@ -111,12 +124,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Adds a 3D text label to the AR scene at the specified position
     func updateText(text: String, atPosition position: SCNVector3) {
         
+        // Remove the text node from its parent to clear it from the AR scene
+        textNode.removeFromParentNode()
+        
         let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
         
         textGeometry.firstMaterial?.diffuse.contents = UIColor.red
         
         // Create a node with the text geometry
-        let textNode = SCNNode(geometry: textGeometry)
+        textNode = SCNNode(geometry: textGeometry)
         
         // Position the text slightly above the given position to avoid overlapping with the dot
         textNode.position = SCNVector3(position.x, position.y + 0.01, position.z)
