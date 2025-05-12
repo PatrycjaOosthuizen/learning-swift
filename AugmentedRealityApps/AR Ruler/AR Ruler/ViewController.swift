@@ -102,11 +102,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Use the 3D distance formula to calculate the distance between the two points
         let distance = sqrt(pow(a, 2) + pow(b, 2) + pow(c, 2))
         
-        // Print the absolute distance to the console
-        print(abs(distance))
         
+        // Call this function to display the calculated distance as 3D text at the second dot's position
+        updateText(text: "\(abs(distance))", atPosition: end.position)
         
     }
   
-
+    // Adds a 3D text label to the AR scene at the specified position
+    func updateText(text: String, atPosition position: SCNVector3) {
+        
+        let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
+        
+        textGeometry.firstMaterial?.diffuse.contents = UIColor.red
+        
+        // Create a node with the text geometry
+        let textNode = SCNNode(geometry: textGeometry)
+        
+        // Position the text slightly above the given position to avoid overlapping with the dot
+        textNode.position = SCNVector3(position.x, position.y + 0.01, position.z)
+        
+        // Scale down the text so it fits nicely in the AR scene
+        textNode.scale = SCNVector3(0.003, 0.003, 0.003)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
+    }
 }
