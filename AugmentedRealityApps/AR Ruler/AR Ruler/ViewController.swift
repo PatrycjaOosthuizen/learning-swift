@@ -13,6 +13,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    // Array to keep track of all dot nodes added to the scene.
+    // Useful for managing, updating, or removing them later.
+    var dotNodes = [SCNNode]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +79,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Add the dot node to the root of the scene graph
         sceneView.scene.rootNode.addChildNode(dotNode)
+        
+        dotNodes.append(dotNode)
+        
+        if dotNodes.count >= 2 {
+            calculete()
+        }
+    }
+    // Calculates the distance between the first two placed dot nodes in 3D space.
+    // This can be used, for example, to measure real-world distances in AR.
+    func calculete() {
+        
+        // Get the first and second dot nodes
+        let start = dotNodes[0]
+        let end = dotNodes[1]
+        
+        // Compute the differences in x, y, and z coordinates
+        let a = end.position.x - start.position.x
+        let b = end.position.y - start.position.y
+        let c = end.position.z - start.position.z
+        
+        // Use the 3D distance formula to calculate the distance between the two points
+        let distance = sqrt(pow(a, 2) + pow(b, 2) + pow(c, 2))
+        
+        // Print the absolute distance to the console
+        print(abs(distance))
+        
+        
     }
   
 
