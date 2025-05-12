@@ -41,5 +41,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    // Override the method to detect when a touch begins on the screen.
+    // Currently logs a message to the console for debugging purposes.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch detected")
+    }
 
 }
