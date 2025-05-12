@@ -43,9 +43,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     // Override the method to detect when a touch begins on the screen.
-    // Currently logs a message to the console for debugging purposes.
+    // If a touch is detected, perform a hit test at the touch location to find a feature point in the real world.
+    // If a feature point is found, place a small red dot at that location in the AR scene.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch detected")
+       
+        if let touchLocation = touches.first?.location(in: sceneView) {
+            // Perform a hit test to find real-world feature points at the touched location
+            let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
+            
+            // If a feature point was found, add a red dot at its position
+            if let hitResult = hitTestResults.first {
+                addDot(at: hitResult)
+            }
+        }
     }
+    // Adds a small red dot (3D sphere) to the AR scene at the specified hit test result location
+    func addDot(at hitResult : ARHitTestResult) {
+        let dotGeometry = SCNSphere(radius: 0.005) // Create a small sphere geometry
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.red  // Set the color of the sphere
+        dotGeometry.materials = [material]
+        
+        let dotNode = SCNNode(geometry: dotGeometry)
+        
+        // Set the dot's position using the world transform of the hit result
+        dotNode.position = SCNVector3(
+            x: hitResult.worldTransform.columns.3.x,
+            y: hitResult.worldTransform.columns.3.y,
+            z: hitResult.worldTransform.columns.3.z)
+        
+        // Add the dot node to the root of the scene graph
+        sceneView.scene.rootNode.addChildNode(dotNode)
+    }
+  
 
 }
