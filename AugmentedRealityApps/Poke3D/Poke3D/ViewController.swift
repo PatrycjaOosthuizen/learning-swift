@@ -21,19 +21,29 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+        // Create a session configuration specifically for image tracking
+        let configuration = ARImageTrackingConfiguration()
+        
+        // Attempt to load reference images from the "Pokemon Crads" image group in the asset catalog
+        if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Pokemon Cards", bundle: Bundle.main) {
+            
+            // Assign the loaded images to the tracking configuration
+            configuration.trackingImages = imageToTrack
+            
+            // Limit the AR session to track only one image at a time for better performance
+            configuration.maximumNumberOfTrackedImages = 1
+            
+            // Log confirmation that the images were successfully loaded
+            print("Images successfully loaded")
+            
+        }
+        
 
         // Run the view's session
         sceneView.session.run(configuration)
