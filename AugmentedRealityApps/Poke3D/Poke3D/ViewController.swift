@@ -58,27 +58,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+    
+    // This method is called when ARKit adds a new anchor to the scene.
+    // We're customizing how to visualize an ARImageAnchor with a semi-transparent plane.
+    func renderer(_ renderer: any SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        // Create a root node that will hold visual content related to the anchor
         let node = SCNNode()
-     
+        
+        // Check if the anchor is an ARImageAnchor (i.e., an image was recognized)
+        if let imageAnchor = anchor as? ARImageAnchor {
+            
+            // Create a flat plane with the same physical size as the detected image
+            let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
+            
+            // Set the plane's appearance to be semi-transparent white
+            plane.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.5)
+            
+            // Create a node for the plane geometry
+            let planeNode = SCNNode(geometry: plane)
+            
+            // Rotate the plane to lie flat over the detected image (from vertical to horizontal)
+            planeNode.eulerAngles.x = -.pi / 2
+            
+            // Attach the plane node to the anchor's main node
+            node.addChildNode(planeNode)
+        }
+        
+        // Return the node to be added to the scene
         return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
 }
