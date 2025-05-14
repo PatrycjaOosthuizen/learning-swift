@@ -21,6 +21,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        // Automatically adds a light source to the scene so 3D models are visibly lit without requiring manual lighting setup
+        sceneView.autoenablesDefaultLighting = true
 
     }
     
@@ -68,6 +71,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Check if the anchor is an ARImageAnchor (i.e., an image was recognized)
         if let imageAnchor = anchor as? ARImageAnchor {
             
+            
             // Create a flat plane with the same physical size as the detected image
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
@@ -82,6 +86,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             // Attach the plane node to the anchor's main node
             node.addChildNode(planeNode)
+            
+            // Attempt to load the 3D scene file for the Pokémon model
+            if let pokeScene = SCNScene(named: "art.scnassets/Squirtle.scn") {
+                
+                // Get the first child node from the scene, which should be the main 3D model
+                if let pokeNode = pokeScene.rootNode.childNodes.first {
+                    
+                    // Rotate the model so it sits upright on the detected image (rotated 90° around the X-axis)
+                    pokeNode.eulerAngles.x = .pi / 2
+                    
+                    // Add the Pokémon model as a child of the plane node that's placed on top of the detected image
+                    planeNode.addChildNode(pokeNode)
+                }
+            }
         }
         
         // Return the node to be added to the scene
