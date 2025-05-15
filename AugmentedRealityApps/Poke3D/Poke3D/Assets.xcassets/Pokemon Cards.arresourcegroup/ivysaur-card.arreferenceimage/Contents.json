@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "ivysaur-card.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "width" : 0.64000000000000001
+  }
+}
