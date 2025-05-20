@@ -6,6 +6,7 @@ This repository is a collection of my code snippets, mini-projects, and full-sca
 
 [![Certificate](./certificate/certificate.jpg)](https://www.udemy.com/certificate/UC-bc732917-d6f2-446c-ba03-7357b68abfd5/)
 
+[![Watch the video of one of my projects](https://i9.ytimg.com/vi_webp/7Xx6xI6vX9c/sddefault.webp?v=682c8a59&sqp=COCVssEG&rs=AOn4CLBWUVzMnR9QoMiNaeNL0tN8cdWS-w)](https://youtu.be/7Xx6xI6vX9c)
 
 ## 📂 About 📱 iOS 13 & Swift 5 – The Complete iOS App Development Bootcamp
 
