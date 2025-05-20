@@ -4,7 +4,7 @@ This repository is a collection of my code snippets, mini-projects, and full-sca
 
 ## 🏆 Certificate of Completion
 
-[![Certificate](./certificate.jpg)](https://www.udemy.com/certificate/UC-bc732917-d6f2-446c-ba03-7357b68abfd5/)
+[![Certificate](./certificate/certificate.jpg)](https://www.udemy.com/certificate/UC-bc732917-d6f2-446c-ba03-7357b68abfd5/)
 
 
 ## 📂 About 📱 iOS 13 & Swift 5 – The Complete iOS App Development Bootcamp
